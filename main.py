@@ -16,32 +16,37 @@ ev3.speaker.beep()
 # motors
 shoulder = Motor(Port.A)
 elbow = Motor(Port.B)
-claw = Motor(Port.C)
 
 # sensors
 touch = TouchSensor(Port.S1)
 
-# constants
+# constants - these can be changed
 shoulder_speed = 100
 elbow_speed = 100
-claw_speed = 100
 
 # functions
-def move_shoulder(degrees):
-    shoulder.run_target(shoulder_speed, degrees)
+def move_shoulder_left():
+    shoulder.run_target(shoulder_speed, 90)
 
-def move_elbow(degrees):
-    elbow.run_target(elbow_speed, degrees)
+def move_shoulder_right():
+    shoulder.run_target(shoulder_speed, 0)
 
+def move_elbow_forward():
+    elbow.run_target(elbow_speed, 90)
+
+def move_elbow_backward():
+    elbow.run_target(elbow_speed, 0)
 
 # center shoulder
-ev3.speaker.say("centering shoulder")
+ev3.speaker.say("Centering base")
 while not touch.pressed():
-    shoulder.run(shoulder_speed)
+    shoulder.run(shoulder_speed)    
 shoulder.stop(Stop.HOLD)
 
-# move elbow
-# this goes down
-elbow.run_target(elbow_speed, 90)
 
+# drawing functions
+# take shape from user
+
+elbow.run_target(elbow_speed, -90)
+shoulder.run_target(shoulder_speed, 0)
 
